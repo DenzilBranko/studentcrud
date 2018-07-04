@@ -1,0 +1,66 @@
+{% extends 'students/base.html' %}
+
+ {% block body%}
+
+<h2>All Student List</h2>
+ {% if stud_list %}
+    <table border="1">
+        <tr>
+            <th>Studen Id</th>
+            <th>First Name</th>
+            <th>Last Name </th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+             <th>Action</th>
+        </tr>
+
+            {% for student in stud_list %}
+                <tr>
+                    <td>{{student.id}}</td>
+                    <td>{{student.fname}}</td>
+                    <td>{{student.lname}}</td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.address}}</td>
+                    <td>{{student.mobile}}</td>
+                    <td><a href="{% url 'student:details' student.id %}">Edit</a></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <h2>Non Records Found</h2>
+        {% endif %}
+    </table>
+  {% endblock%}
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>College Aplicatin</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+    {% block body%}
+    {% endblock%}
+</div>
+
+
